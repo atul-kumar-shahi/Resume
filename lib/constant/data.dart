@@ -1,5 +1,6 @@
 import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
+import 'package:new_resume/mini_projects/about.dart';
 import 'package:new_resume/models/app_model.dart';
 import '../models/colors_model.dart';
 import '../models/device_model.dart';
@@ -71,17 +72,22 @@ List<ColorModel> colorPallete = [
 ];
 
 List<AppModel>apps=[
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
-  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,screen: const About()),
+  AppModel(title: 'LinkedIn', color: Colors.white,icon: Icons.abc,link: linkedIn),
+  AppModel(title: 'Instagram', color: Colors.white,icon: Icons.accessibility_new,link: linkedIn),
+  AppModel(title: 'GitHub', color: Colors.white,icon: Icons.fastfood,link:github),
+  AppModel(title: 'Resume', color: Colors.white,icon: Icons.add_a_photo,link:resume),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined,link: linkedIn),
 ];
+
+
+const String linkedIn='https://www.linkedin.com/in/atul-kumar-a5a378238/';
+const String github='https://github.com/atul-kumar-shahi';
+const String resume='https://drive.google.com/file/d/1T0FZd8BIZ5uEfyXzKoCJImZ0_hzQ_KCj/view?usp=drive_link';
