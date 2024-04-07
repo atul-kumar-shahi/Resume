@@ -3,6 +3,7 @@ import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_resume/constant/data.dart';
+import 'package:new_resume/models/colors_model.dart';
 import 'package:new_resume/providers/current_state.dart';
 import 'package:provider/provider.dart';
 
@@ -70,11 +71,51 @@ class HomePage extends StatelessWidget {
                       return DeviceFrame(
                         device: currentState.currentDevice,
                         screen: Container(
-                          color: Colors.red,
-                          child: const Center(
-                            child: Text(
-                              "Hello World",
-                              style: TextStyle(color: Colors.white),
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: colorPallete[currentState.currentKnob]
+                                      .gradient
+                                      .colors)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 50.0),
+                            child: Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              alignment: WrapAlignment.start,
+                              children: [
+                                ...List.generate(
+                                    apps.length,
+                                    (index) => Container(
+                                          // padding: EdgeInsets.only(top: 30),
+                                          margin: const EdgeInsets.only(
+                                              left: 17,
+                                              right: 13,
+                                              top: 10,
+                                              bottom: 20),
+                                          child: Column(
+                                            children: [
+                                              CustomButton(
+                                                onPressed: () {},
+                                                borderRadius: currentState.currentDevice==Devices.ios.iPhone13?8:100,
+                                                height: 55,
+                                                width: 55,
+                                                backgroundColor:
+                                                    apps[index].color,
+                                                child: Center(
+                                                  child: Icon(apps[index].icon),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10,),
+                                              SizedBox(
+                                                width: 60,
+                                                child: Center(
+                                                  child:
+                                                      Text(apps[index].title,),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ))
+                              ],
                             ),
                           ),
                         ),
@@ -91,27 +132,30 @@ class HomePage extends StatelessWidget {
                               children: [
                                 ...List.generate(
                                     colorPallete.length,
-                                    (index) => Selector<CurrentState,int>(
-                                      selector: (context,provider)=>provider.currentKnob,
-                                      builder: (context,value,child) {
-                                        return CustomButton(
-                                              margin: const EdgeInsets.all(10),
-                                              height: 52,
-                                              width: 52,
-                                              onPressed: () {
-                                                currentState
-                                                    .changeCurrentKnob(index);
-                                              },
-                                              animate: true,
-                                              pressed: currentState.currentKnob==index?Pressed.pressed:Pressed.notPressed,
-                                              isThreeD: true,
-                                              shadowColor: Colors.white,
-                                              borderRadius: 100,
-                                              backgroundColor:
-                                                  colorPallete[index].color,
-                                            );
-                                      }
-                                    )),
+                                    (index) => Selector<CurrentState, int>(
+                                        selector: (context, provider) =>
+                                            provider.currentKnob,
+                                        builder: (context, value, child) {
+                                          return CustomButton(
+                                            margin: const EdgeInsets.all(10),
+                                            height: 52,
+                                            width: 52,
+                                            onPressed: () {
+                                              currentState
+                                                  .changeCurrentKnob(index);
+                                            },
+                                            animate: true,
+                                            pressed: currentState.currentKnob ==
+                                                    index
+                                                ? Pressed.pressed
+                                                : Pressed.notPressed,
+                                            isThreeD: true,
+                                            shadowColor: Colors.white,
+                                            borderRadius: 100,
+                                            backgroundColor:
+                                                colorPallete[index].color,
+                                          );
+                                        })),
                               ],
                             ),
                           )),

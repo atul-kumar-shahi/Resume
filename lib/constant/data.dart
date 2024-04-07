@@ -1,5 +1,6 @@
 import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
+import 'package:new_resume/models/app_model.dart';
 import '../models/colors_model.dart';
 import '../models/device_model.dart';
 
@@ -67,4 +68,20 @@ List<ColorModel> colorPallete = [
   ),
 
 
+];
+
+List<AppModel>apps=[
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
+  AppModel(title: 'About', color: Colors.white,icon: Icons.ac_unit_outlined),
 ];

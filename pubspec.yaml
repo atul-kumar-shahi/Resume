@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   provider: ^6.1.2
   custom_button_builder: ^0.0.4
+  google_fonts: ^6.2.0
 
 dev_dependencies:
   flutter_test:
