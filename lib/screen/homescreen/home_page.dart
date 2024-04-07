@@ -13,24 +13,30 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    CurrentState currentState=Provider.of<CurrentState>(context,listen: false);
+    CurrentState currentState =
+        Provider.of<CurrentState>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Colors.blue.shade900,
-              Colors.black45,
-            ], begin: Alignment.topLeft)),
-          ),
-          SvgPicture.asset(
-            'assets/images/cloudyBlue.svg',
-            fit: BoxFit.cover,
-            height: size.height,
-          ),
+          Selector<CurrentState, int>(
+              selector: (context, provider) => provider.currentKnob,
+              builder: (context, value, child) {
+                return Container(
+                  decoration: BoxDecoration(
+                      gradient:
+                          colorPallete[currentState.currentKnob].gradient),
+                );
+              }),
+          Selector<CurrentState, int>(
+              selector: (context, provider) => provider.currentKnob,
+              builder: (context, value, child) {
+                return SvgPicture.asset(
+                  colorPallete[currentState.currentKnob].svgPath,
+                  fit: BoxFit.cover,
+                  height: size.height,
+                );
+              }),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -42,36 +48,81 @@ class HomePage extends StatelessWidget {
                 children: [
                   const Column(
                     children: [
-                      FrostedContainer(height: 345,width: 247,),
-                      SizedBox(height: 20,),
-                      FrostedContainer(height: 175,width: 247,),
+                      FrostedContainer(
+                        height: 345,
+                        width: 247,
+                        childG: Placeholder(),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      FrostedContainer(
+                        height: 175,
+                        width: 247,
+                        childG: Placeholder(),
+                      ),
                     ],
                   ),
-
                   SizedBox(
                     height: size.height - 100,
                     child: Consumer<CurrentState>(
-                      builder: (context,value,child) {
-                        return DeviceFrame(
-                          device: currentState.currentDevice  ,
-                          screen: Container(
-                            color: Colors.red,
-                            child: const Center(
-                              child: Text(
-                                "Hello World",
-                                style: TextStyle(color: Colors.white),
-                              ),
+                        builder: (context, value, child) {
+                      return DeviceFrame(
+                        device: currentState.currentDevice,
+                        screen: Container(
+                          color: Colors.red,
+                          child: const Center(
+                            child: Text(
+                              "Hello World",
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
-                        );
-                      }
-                    ),
+                        ),
+                      );
+                    }),
                   ),
-                  const Column(
+                  Column(
                     children: [
-                      FrostedContainer(height: 345,width: 247,),
-                      SizedBox(height: 20,),
-                      FrostedContainer(height: 175,width: 247,),
+                      FrostedContainer(
+                          height: 345,
+                          width: 247,
+                          childG: Center(
+                            child: Wrap(
+                              children: [
+                                ...List.generate(
+                                    colorPallete.length,
+                                    (index) => Selector<CurrentState,int>(
+                                      selector: (context,provider)=>provider.currentKnob,
+                                      builder: (context,value,child) {
+                                        return CustomButton(
+                                              margin: const EdgeInsets.all(10),
+                                              height: 52,
+                                              width: 52,
+                                              onPressed: () {
+                                                currentState
+                                                    .changeCurrentKnob(index);
+                                              },
+                                              animate: true,
+                                              pressed: currentState.currentKnob==index?Pressed.pressed:Pressed.notPressed,
+                                              isThreeD: true,
+                                              shadowColor: Colors.white,
+                                              borderRadius: 100,
+                                              backgroundColor:
+                                                  colorPallete[index].color,
+                                            );
+                                      }
+                                    )),
+                              ],
+                            ),
+                          )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const FrostedContainer(
+                        height: 175,
+                        width: 247,
+                        childG: Placeholder(),
+                      ),
                     ],
                   ),
                 ],
@@ -84,31 +135,34 @@ class HomePage extends StatelessWidget {
                 children: [
                   ...List.generate(
                       devices.length,
-                      (index) => Selector<CurrentState,DeviceInfo>(
-                        selector: (context,provider)=>provider.currentDevice,
-                        builder: (context,value,child) {
-                          return CustomButton(
-                            height: 38,
-                                width: 38,
-                                borderRadius: 100,
-                                backgroundColor: Colors.black,
-                                onPressed: () {
-                              currentState.changeDevice(devices[index].device);
-                                },
-                                isThreeD: true,
-                            animate: true,
-                            pressed: currentState.currentDevice==devices[index].device?Pressed.pressed:Pressed.notPressed,
-                            shadowColor: Colors.white,
-                                child: Center(
-                                  child: Icon(
-                                    devices[index].icon,
-
-                                    color: Colors.white,
-                                  ),
+                      (index) => Selector<CurrentState, DeviceInfo>(
+                          selector: (context, provider) =>
+                              provider.currentDevice,
+                          builder: (context, value, child) {
+                            return CustomButton(
+                              height: 38,
+                              width: 38,
+                              borderRadius: 100,
+                              backgroundColor: Colors.black,
+                              onPressed: () {
+                                currentState
+                                    .changeDevice(devices[index].device);
+                              },
+                              isThreeD: true,
+                              animate: true,
+                              pressed: currentState.currentDevice ==
+                                      devices[index].device
+                                  ? Pressed.pressed
+                                  : Pressed.notPressed,
+                              shadowColor: Colors.white,
+                              child: Center(
+                                child: Icon(
+                                  devices[index].icon,
+                                  color: Colors.white,
                                 ),
-                              );
-                        }
-                      ))
+                              ),
+                            );
+                          }))
                 ],
               )
             ],
@@ -118,5 +172,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-

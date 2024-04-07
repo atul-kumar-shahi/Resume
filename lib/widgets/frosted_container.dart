@@ -3,11 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 class FrostedContainer extends StatelessWidget {
   const FrostedContainer({
-    super.key, required this.height, required this.width,
+    super.key, required this.height, required this.width, required this.childG,
   });
 
   final double height;
   final double width;
+  final Widget ?childG;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class FrostedContainer extends StatelessWidget {
                         ]
                     )
                 ),
+                child: childG,
               )
             ],
           ),
