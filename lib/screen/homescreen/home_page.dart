@@ -6,6 +6,8 @@ import 'package:new_resume/constant/data.dart';
 import 'package:new_resume/providers/current_state.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/frosted_container.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
             ], begin: Alignment.topLeft)),
           ),
           SvgPicture.asset(
-            'assets/images/meteor.svg',
+            'assets/images/cloudyBlue.svg',
             fit: BoxFit.cover,
             height: size.height,
           ),
@@ -38,6 +40,14 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Column(
+                    children: [
+                      FrostedContainer(height: 345,width: 247,),
+                      SizedBox(height: 20,),
+                      FrostedContainer(height: 175,width: 247,),
+                    ],
+                  ),
+
                   SizedBox(
                     height: size.height - 100,
                     child: Consumer<CurrentState>(
@@ -56,7 +66,14 @@ class HomePage extends StatelessWidget {
                         );
                       }
                     ),
-                  )
+                  ),
+                  const Column(
+                    children: [
+                      FrostedContainer(height: 345,width: 247,),
+                      SizedBox(height: 20,),
+                      FrostedContainer(height: 175,width: 247,),
+                    ],
+                  ),
                 ],
               ),
               const SizedBox(
@@ -101,3 +118,5 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
