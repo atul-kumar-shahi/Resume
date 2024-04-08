@@ -6,6 +6,7 @@ import 'package:new_resume/constant/data.dart';
 import 'package:new_resume/providers/current_state.dart';
 import 'package:new_resume/screen/homescreen/phone_home_screen.dart';
 import 'package:new_resume/screen/homescreen/phone_screen_wrapper.dart';
+import 'package:new_resume/widgets/rain_cloud.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/frosted_container.dart';
@@ -21,6 +22,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          const Rain(top: 150, oposite: true),
           Selector<CurrentState, int>(
               selector: (context, provider) => provider.currentKnob,
               builder: (context, value, child) {
@@ -30,6 +32,9 @@ class HomePage extends StatelessWidget {
                           colorPallete[currentState.currentKnob].gradient),
                 );
               }),
+          const Rain(top: 20, oposite: false),
+          const Rain(top: 275, oposite: true),
+
           Selector<CurrentState, int>(
               selector: (context, provider) => provider.currentKnob,
               builder: (context, value, child) {
@@ -39,6 +44,7 @@ class HomePage extends StatelessWidget {
                   height: size.height,
                 );
               }),
+
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
